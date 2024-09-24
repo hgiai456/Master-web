@@ -11,32 +11,15 @@ namespace QLCoffee.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class TAIKHOAN
     {
-        [DisplayName("TenDN")]
-        [Required(ErrorMessage = "Error Empty")]
-
         public string TenDN { get; set; }
-        [DisplayName("MatKhau")]
-        [Required(ErrorMessage = "Error Empty")]
-
         public string MatKhau { get; set; }
-        [DisplayName("PhanQuyen")]
-        [Required(ErrorMessage = "Error Empty")]
         public string PhanQuyen { get; set; }
         public string MaKH { get; set; }
         public string MaNV { get; set; }
-
-        [NotMapped]
-        [Required(ErrorMessage = "Error Empty")]
-        [Compare("MatKhau")]
-        public string Repass { get; set; }
-
-
+    
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
     }

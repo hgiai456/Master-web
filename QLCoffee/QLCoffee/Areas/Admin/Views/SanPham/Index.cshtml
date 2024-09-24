@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    int i = 0;
 }
 
 <h2>Danh sách sản phẩm</h2>
@@ -11,7 +12,10 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        <th style="width: 50px;">
+            STT
+        </th>
+        <th id="txt-align">
             Mã sản phẩm
         </th>
         <th>
@@ -20,16 +24,16 @@
         <th>
             Giá sản phẩm
         </th>
-        <th>
-            Số Lượng sản phẩm
+        <th id="txt-align">
+            Số Lượng
         </th>
-        <th>
+        <th id="txt-align">
             Mã loại sản phẩm
         </th>
-        <th>
+        <th id="txt-align">
             Ngày sản xuất
         </th>
-        <th>
+        <th id="txt-align">
             Hình ảnh
         </th>
         <th></th>
@@ -37,26 +41,28 @@
 
     @foreach (var item in Model)
     {
+        i++;
         <tr>
-            <td>
+            <td id="txt-align">@i</td>
+            <td id="txt-align">
                 @Html.DisplayFor(modelItem => item.MaSP)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TenSP)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GiaSP)
+                @string.Format("{0:#,0}", item.GiaSP) @*Định dạng số có ,*@
             </td>
-            <td>
+            <td id="txt-align">
                 @Html.DisplayFor(modelItem => item.SoLuongSP)
             </td>
-            <td>
+            <td id="txt-align">
                 @Html.DisplayFor(modelItem => item.MaLoaiSP)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySX)
+            <td id="txt-align">
+               @string.Format("{0:dd-MM-yyyy}",item.NgaySX) @*Định dạng ngày*@ 
             </td>
-            <td>
+            <td id="txt-align">
                 @if (!string.IsNullOrEmpty(item.Image1))
                 {
                     <img src="@Url.Content(item.Image1)" alt="Image" style="width: 100px; height: 100px;" />
@@ -67,8 +73,8 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MaSP}, new { @class = "btn btn-sm btn-primary" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MaSP}, new { @class = "btn btn-sm btn-dark" }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaSP }, new { @class = "btn btn-sm btn-primary" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaSP }, new { @class = "btn btn-sm btn-dark" }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.MaSP }, new { @class = "btn btn-sm btn-danger" })
             </td>
         </tr>

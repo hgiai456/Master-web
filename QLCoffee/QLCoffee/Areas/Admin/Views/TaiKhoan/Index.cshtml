@@ -3,29 +3,38 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    int i = 0;
 }
+<style>
+    #txt-align{
 
+    }
+</style>
 <h2>Danh sách tài khoản</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+    
 </p>
 
 <table class="table">
     <tr>
+        <th style="width: 50px;" >
+            STT
+        </th >
         <th>
             Tên đăng nhập
         </th>
         <th>
            Mật khẩu
         </th>       
-        <th>
+        <th id="txt-align">
            Phân quyền
         </th>
-        <th>
+        <th id="txt-align">
             Mã khách hàng
         </th>
-        <th>
+        <th id="txt-align">
             Mã nhân viên
         </th>
         <th></th>
@@ -33,20 +42,22 @@
 
     @foreach (var item in Model)
     {
+        i++;
         <tr>
+            <td id="txt-align">@i</td>
             <td>
-                @Html.DisplayFor(modelItem => item.TenDN)
+                @item.TenDN
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
+                @item.MatKhau
             </td>           
-            <td>
+            <td id="txt-align">
                 @Html.DisplayFor(modelItem => item.PhanQuyen)
             </td>
-            <td>
+            <td id="txt-align">
                 @Html.DisplayFor(modelItem => item.MaKH)
             </td>
-            <td>
+            <td id="txt-align">
                 @Html.DisplayFor(modelItem => item.MaNV)
             </td>           
             <td>
