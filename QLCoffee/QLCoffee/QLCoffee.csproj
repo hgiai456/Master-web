@@ -182,6 +182,9 @@
     <Compile Include="Models\LOAISANPHAM.cs">
       <DependentUpon>EntitiesDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MAU.cs">
+      <DependentUpon>EntitiesDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NHACUNGCAP.cs">
       <DependentUpon>EntitiesDB.tt</DependentUpon>
     </Compile>

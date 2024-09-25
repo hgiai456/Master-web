@@ -75,6 +75,14 @@
           <Property Name="TenLoaiSP" Type="nvarchar" MaxLength="30" />
           <Property Name="MaNCC" Type="char" MaxLength="4" />
         </EntityType>
+        <EntityType Name="MAU">
+          <Key>
+            <PropertyRef Name="MaMau" />
+          </Key>
+          <Property Name="MaMau" Type="int" Nullable="false" />
+          <Property Name="TenMau" Type="nvarchar" MaxLength="30" />
+          <Property Name="RGB" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
             <PropertyRef Name="MaNCC" />
@@ -107,6 +115,7 @@
           <Property Name="MaLoaiSP" Type="char" MaxLength="4" />
           <Property Name="NgaySX" Type="date" />
           <Property Name="Image1" Type="nvarchar(max)" />
+          <Property Name="MaMau" Type="int" />
         </EntityType>
         <EntityType Name="SHIPPER">
           <Key>
@@ -197,6 +206,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MAMAU_SANPHAM">
+          <End Role="MAU" Type="Self.MAU" Multiplicity="0..1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAU">
+              <PropertyRef Name="MaMau" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MaMau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NHACUNGCAP_KHO">
           <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="0..1" />
           <End Role="KHO" Type="Self.KHO" Multiplicity="*" />
@@ -277,6 +298,7 @@
           <EntitySet Name="KHO" EntityType="Self.KHO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAISANPHAM" EntityType="Self.LOAISANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAU" EntityType="Self.MAU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
@@ -304,6 +326,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_LOAISANPHAM_SANPHAM" Association="Self.FK_LOAISANPHAM_SANPHAM">
             <End Role="LOAISANPHAM" EntitySet="LOAISANPHAM" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAMAU_SANPHAM" Association="Self.FK_MAMAU_SANPHAM">
+            <End Role="MAU" EntitySet="MAU" />
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
           <AssociationSet Name="FK_NHACUNGCAP_KHO" Association="Self.FK_NHACUNGCAP_KHO">
@@ -458,6 +484,8 @@
           <NavigationProperty Name="CHITIET_HOADON" Relationship="Self.FK_SANPHAM_CHITIETHOADON" FromRole="SANPHAM" ToRole="CHITIET_HOADON" />
           <NavigationProperty Name="LOAISANPHAM" Relationship="Self.FK_LOAISANPHAM_SANPHAM" FromRole="SANPHAM" ToRole="LOAISANPHAM" />
           <Property Name="Image1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaMau" Type="Int32" />
+          <NavigationProperty Name="MAU" Relationship="QuanLyQuanCoffeeModel.FK_MAMAU_SANPHAM" FromRole="SANPHAM" ToRole="MAU" />
         </EntityType>
         <EntityType Name="SHIPPER">
           <Key>
@@ -684,7 +712,33 @@
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
           </AssociationSet>
+          <EntitySet Name="MAUs" EntityType="QuanLyQuanCoffeeModel.MAU" />
+          <AssociationSet Name="FK_MAMAU_SANPHAM" Association="QuanLyQuanCoffeeModel.FK_MAMAU_SANPHAM">
+            <End Role="MAU" EntitySet="MAUs" />
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="MAU">
+          <Key>
+            <PropertyRef Name="MaMau" />
+          </Key>
+          <Property Name="MaMau" Type="Int32" Nullable="false" />
+          <Property Name="TenMau" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="RGB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SANPHAMs" Relationship="QuanLyQuanCoffeeModel.FK_MAMAU_SANPHAM" FromRole="MAU" ToRole="SANPHAM" />
+        </EntityType>
+        <Association Name="FK_MAMAU_SANPHAM">
+          <End Type="QuanLyQuanCoffeeModel.MAU" Role="MAU" Multiplicity="0..1" />
+          <End Type="QuanLyQuanCoffeeModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAU">
+              <PropertyRef Name="MaMau" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MaMau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -793,6 +847,7 @@
           <EntitySetMapping Name="SANPHAMs">
             <EntityTypeMapping TypeName="QuanLyQuanCoffeeModel.SANPHAM">
               <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
                 <ScalarProperty Name="Image1" ColumnName="Image1" />
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="TenSP" ColumnName="TenSP" />
@@ -819,6 +874,15 @@
                 <ScalarProperty Name="PhanQuyen" ColumnName="PhanQuyen" />
                 <ScalarProperty Name="MaKH" ColumnName="MaKH" />
                 <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAUs">
+            <EntityTypeMapping TypeName="QuanLyQuanCoffeeModel.MAU">
+              <MappingFragment StoreEntitySet="MAU">
+                <ScalarProperty Name="RGB" ColumnName="RGB" />
+                <ScalarProperty Name="TenMau" ColumnName="TenMau" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

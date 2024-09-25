@@ -29,6 +29,8 @@
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_LOAISANPHAM_SANPHAM" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_NHACUNGCAP_LOAISANPHAM" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_NHANVIEN_TAIKHOAN" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.MAU" Width="1.5" PointX="10.5" PointY="1.875" />
+        <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_MAMAU_SANPHAM" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

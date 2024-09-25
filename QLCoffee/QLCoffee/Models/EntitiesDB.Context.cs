@@ -37,5 +37,6 @@ namespace QLCoffee.Models
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
         public virtual DbSet<SHIPPER> SHIPPERs { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
+        public virtual DbSet<MAU> MAUs { get; set; }
     }
 }
