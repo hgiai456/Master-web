@@ -89,5 +89,14 @@ namespace QLCoffee.Controllers
                 return View("Register") ;
             }
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Login", "Login");
+        }
+
     }
 }
