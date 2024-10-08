@@ -1,0 +1,64 @@
+﻿@model IEnumerable<QLCoffee.Models.PRODUCT>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NamePro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desciption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LOAISANPHAM.TenLoaiSP)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamePro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desciption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Img1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Img2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Img3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LOAISANPHAM.TenLoaiSP)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDPro }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDPro }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDPro })
+        </td>
+    </tr>
+}
+
+</table>

@@ -12,71 +12,76 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
+<div class="form-horizontal">
+    <hr />
 
-        <div class="form-group">
-            <label>Mã sản phẩm:</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Tên sản phẩm:</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Giá sản phẩm</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GiaSP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GiaSP, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Số lượng</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuongSP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoLuongSP, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Mã loại</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaLoaiSP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaLoaiSP, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Ngày sản xuất</label>
-            <div class="col-md-10">
-                <input name="NgaySX" class="form-control" value="@string.Format("0:yyyy-MM-dd",DateTime.Now)" type="date" />
-                @Html.ValidationMessageFor(model => model.NgaySX, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <h4>Ảnh</h4>
-                <img src="@Model.Image1" style="width:200px" />
-                <p>
-                    <a href="/SanPham/Details" class="pull-right">Upload</a>
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-outline-success" />
-            </div>
+    <div class="form-group">
+        <label>Mã sản phẩm:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <label>Tên sản phẩm:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Giá sản phẩm</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GiaSP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GiaSP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Số lượng</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SoLuongSP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SoLuongSP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Số lượng bán ra</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SoLuongDaBan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SoLuongDaBan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Ngày sản xuất</label>
+        <div class="col-md-10">
+            <input name="NgaySX" class="form-control" value="@string.Format("0:yyyy-MM-dd",DateTime.Now)" type="date" />
+            @Html.ValidationMessageFor(model => model.NgaySX, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Mã sản phẩm chính</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.IDPro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.IDPro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <h4>Ảnh</h4>
+            <img src="@Model.Image1" style="width:200px" />
+            <p>
+                <a href="/SanPham/Details" class="pull-right">Upload</a>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-outline-success" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
