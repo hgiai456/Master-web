@@ -12,27 +12,19 @@ namespace QLCoffee.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SANPHAM
+    public partial class MAU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SANPHAM()
+        public MAU()
         {
-            this.CHITIET_HOADON = new HashSet<CHITIET_HOADON>();
+            this.SANPHAMs = new HashSet<SANPHAM>();
         }
     
-        public string MaSP { get; set; }
-        public string TenSP { get; set; }
-        public int GiaSP { get; set; }
-        public Nullable<int> SoLuongSP { get; set; }
-        public Nullable<System.DateTime> NgaySX { get; set; }
-        public string Image1 { get; set; }
-        public Nullable<int> MaMau { get; set; }
-        public string IDPro { get; set; }
-        public Nullable<int> SoLuongDaBan { get; set; }
+        public int MaMau { get; set; }
+        public string TenMau { get; set; }
+        public string RGB { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIET_HOADON> CHITIET_HOADON { get; set; }
-        public virtual MAU MAU { get; set; }
-        public virtual PRODUCT PRODUCT { get; set; }
+        public virtual ICollection<SANPHAM> SANPHAMs { get; set; }
     }
 }

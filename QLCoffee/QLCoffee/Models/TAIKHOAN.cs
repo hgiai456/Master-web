@@ -15,6 +15,7 @@ namespace QLCoffee.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+
     public partial class TAIKHOAN
     {
         [DisplayName("TenDN")]
@@ -23,7 +24,6 @@ namespace QLCoffee.Models
         public string TenDN { get; set; }
         [DisplayName("MatKhau")]
         [Required(ErrorMessage = "Error Empty")]
-
         public string MatKhau { get; set; }
         [DisplayName("PhanQuyen")]
         [Required(ErrorMessage = "Error Empty")]
@@ -34,10 +34,10 @@ namespace QLCoffee.Models
         [NotMapped]
         [Required(ErrorMessage = "Error Empty")]
         [Compare("MatKhau")]
-        public string Repass { get; set; }
-
+        public string RePass { get; set; }
 
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
+
     }
 }
